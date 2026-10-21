@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Александр Сахно — сайты, боты и приложения</title>
+<meta name="description" content="Сайты, Telegram-боты и мини-приложения для ресторанов, баров, кафе и не только. Цены от 10 000 ₽.">
+<meta name="theme-color" content="#fafaf9">
+<meta property="og:title" content="Сайты и приложения под ваш проект">
+<meta property="og:description" content="Сайты, Telegram-боты и мини-приложения. Чаще всего для баров и ресторанов. От 10 000 ₽.">
+<link rel="canonical" href="https://onkhas1.github.io/portfolio/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onkhas1.github.io/portfolio/">
+<meta property="og:image" content="https://onkhas1.github.io/portfolio/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js','grid-on')</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&display=swap"></noscript>
+<style>
+:root{
+  --paper:#fafaf9;
+  --line:#dfe4ee;        /* волосяные линии сетки */
+  --line-2:#c9d1e0;
+  --ink:#0b0b0c;
+  --ink-2:#55585f;
+  --blue:#2340ff;        /* единственный акцент: целые плоскости */
+  --on-blue:#ffffff;
+  --text:'Onest',-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --g:20px;              /* шаг ритма */
+  --gut:clamp(16px,4vw,64px);
+  --max:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scrollbar-color:var(--ink) var(--paper)}
+body{background:var(--paper);color:var(--ink);font:17px/1.55 var(--text);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .6s var(--ease);
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:var(--bg,var(--g)) var(--bg,var(--g));background-position:var(--bgx,0) 0}
+.grid-on body::before{opacity:1}
+::selection{background:var(--blue);color:var(--on-blue)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.wrap{max-width:calc(var(--max) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Верхняя строка ---------- */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px;font-size:15px}
+.bar b{font-weight:700;letter-spacing:-.01em}
+.bar nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,32px)}
+.bar nav a{text-decoration:none;color:var(--ink-2)}
+.bar nav a:hover{color:var(--ink)}
+.tg{display:inline-flex;align-items:center;gap:10px;background:none;border:0;font:inherit;color:var(--ink-2);cursor:pointer;min-height:44px}
+.tg i{position:relative;width:34px;height:20px;border:1.5px solid var(--ink);flex:none}
+.tg i::after{content:"";position:absolute;top:2px;left:2px;width:13px;height:13px;background:var(--ink);transition:transform .35s var(--ease)}
+.tg[aria-pressed="true"] i::after{transform:translateX(14px);background:var(--blue)}
+.tg:hover{color:var(--ink)}
+
+/* ---------- Клеточная азбука ---------- */
+.cells{display:block;width:100%;height:auto;overflow:visible}
+.cells .k{fill:currentColor}
+.cells .cg{stroke:var(--line-2);stroke-width:.04;fill:none;opacity:0;transition:opacity .5s var(--ease)}
+.grid-on .cells .cg{opacity:1}
+.js .cells.wait .k{opacity:0}
+.cells.go .k{animation:cell .7s var(--ease) both;animation-delay:calc(var(--i) * 1ms);transform-box:fill-box;transform-origin:center}
+@keyframes cell{from{opacity:0;transform:scale(.2)}}
+
+/* ---------- Первый экран ---------- */
+.hero{padding-top:calc(var(--g)*2)}
+.hero h1 .cells + .cells{margin-top:calc(var(--g)*1)}
+.hero-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:calc(var(--g)*2) clamp(32px,5vw,80px);margin-top:calc(var(--g)*3);align-items:stretch}
+.hl{display:flex;flex-direction:column}
+.inside{list-style:none;margin-top:auto;padding-top:calc(var(--g)*3)}
+.inside li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:16px;padding:calc(var(--g)*.75) 0;border-top:1px solid var(--line-2);font-size:15px}
+.inside li:first-child{border-top:1px solid var(--ink)}
+.inside li:last-child{border-bottom:1px solid var(--line-2)}
+.inside b{font-weight:500}
+.inside span{color:var(--ink-2)}
+.lede{font-size:clamp(19px,1.8vw,24px);line-height:1.45;max-width:30ch;letter-spacing:-.01em}
+.lede span{color:var(--ink-2)}
+.acts{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:calc(var(--g)*2)}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:60px;padding:0 28px;background:var(--ink);color:var(--paper);font:500 18px/1 var(--text);text-decoration:none;transition:background .25s var(--ease)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn:hover{background:var(--blue)}
+.ln{font-weight:500;text-decoration:none;border-bottom:1.5px solid var(--line-2);padding-bottom:3px}
+.ln:hover{border-color:var(--blue);color:var(--blue)}
+
+/* синяя плоскость с живым демо */
+.plane{background:var(--blue);color:var(--on-blue);padding:calc(var(--g)*2);display:grid;justify-items:center;gap:calc(var(--g)*1)}
+.device{position:relative;width:min(100%,330px);background:var(--ink);border-radius:38px;padding:9px}
+.device iframe{display:block;width:100%;height:clamp(480px,58vh,560px);border:0;border-radius:30px;background:#fff}
+.tap{position:absolute;inset:9px;z-index:2;display:none;align-items:flex-end;justify-content:center;padding-bottom:80px;border:0;border-radius:30px;background:linear-gradient(transparent 50%,rgba(11,11,12,.55));cursor:pointer;font:500 17px/1 var(--text);color:var(--ink)}
+.tap span{padding:16px 22px;background:var(--paper)}
+.device.on .tap{display:none!important}
+@media (hover:none){.tap{display:flex}.device iframe{height:min(520px,66svh)}}
+.plane p{display:flex;justify-content:space-between;gap:16px;width:min(100%,330px);font-size:14px}
+.plane p a{color:var(--on-blue)}
+
+/* ---------- Разделы ---------- */
+.sec{padding-top:calc(var(--g)*7)}
+.sec-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px clamp(32px,5vw,80px);align-items:end;padding-bottom:calc(var(--g)*1);border-bottom:1px solid var(--ink)}
+h2{font:700 clamp(36px,5vw,64px)/1 var(--text);letter-spacing:-.035em}
+h2 .sec-t{width:auto;height:clamp(34px,4.4vw,56px);max-width:100%}
+.sec-h p{color:var(--ink-2);max-width:42ch}
+
+/* работы */
+.work{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:calc(var(--g)*2) clamp(32px,5vw,80px);padding:calc(var(--g)*3) 0;border-bottom:1px solid var(--line-2)}
+.work:last-child{border-bottom:0}
+h3{font:700 clamp(24px,2.4vw,32px)/1.1 var(--text);letter-spacing:-.025em}
+.meta{margin-top:10px;font-size:15px;color:var(--blue);font-weight:500}
+.work p.d{margin-top:calc(var(--g)*1);color:var(--ink-2);max-width:48ch}
+.work .ln{display:inline-block;margin-top:calc(var(--g)*1.5)}
+.shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:calc(var(--g)*1)}
+.shots img{border-radius:22px;background:#eef0f4}
+.shots.web{grid-template-columns:minmax(0,3.3fr) minmax(0,1fr);align-items:end}
+.shots.web img:first-child{border-radius:10px}
+
+/* цены */
+.prices{list-style:none}
+.pr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:calc(var(--g)*1) clamp(32px,5vw,80px);align-items:center;padding:calc(var(--g)*2.5) 0;border-bottom:1px solid var(--line-2)}
+.pr .num{background:var(--blue);color:var(--on-blue);padding:calc(var(--g)*1.5)}
+.pr .num .cg{stroke:rgba(255,255,255,.22)}
+.pr .num .cells{max-width:520px}
+.pr .cur{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:15px;color:rgba(255,255,255,.82);max-width:520px}
+.pr .cur b{color:var(--on-blue);font-weight:500}
+.pr .txt h3{margin-bottom:8px}
+.pr .txt p{color:var(--ink-2);max-width:46ch}
+.pr .txt .when{margin-top:10px;color:var(--ink);font-weight:500;font-size:15px}
+.deal{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px clamp(32px,5vw,80px);margin-top:calc(var(--g)*3);background:var(--ink);color:var(--paper);padding:calc(var(--g)*2)}
+.deal b{font:700 clamp(24px,2.6vw,34px)/1.15 var(--text);letter-spacing:-.025em}
+.deal p{font-size:16px;align-self:end}
+
+/* как работаем */
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 calc(var(--g)*1.5);counter-reset:s}
+.steps li{padding-top:calc(var(--g)*1.5);counter-increment:s}
+.steps .n{width:auto;height:calc(var(--g)*3.5);margin-bottom:calc(var(--g)*1)}
+.steps b{display:block;font-size:20px;letter-spacing:-.015em}
+.steps p{margin-top:6px;color:var(--ink-2);font-size:16px}
+
+/* о себе и вопросы */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:calc(var(--g)*3) clamp(32px,5vw,80px);padding-top:calc(var(--g)*2.5)}
+.about blockquote{font-size:clamp(21px,2vw,26px);line-height:1.45;letter-spacing:-.015em}
+.about.solo{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+.me{list-style:none;align-self:start}
+.me li{padding:calc(var(--g)*.75) 0;border-top:1px solid var(--line-2);font-size:16px}
+.me li:first-child{border-top:0}
+.me li:last-child{border-bottom:1px solid var(--line-2)}
+.me b{display:block;font-weight:500}
+.me span{color:var(--ink-2);font-size:15px}
+.faq.wide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(32px,5vw,80px);padding-top:calc(var(--g)*2.5)}
+.faq details:first-child,.faq.wide details:nth-child(2){border-top:0}
+.about blockquote footer{margin-top:calc(var(--g)*1.5);font-size:15px;color:var(--ink-2)}
+.faq details{border-bottom:1px solid var(--line-2)}
+.faq details:first-child{border-top:1px solid var(--ink)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:16px 0;cursor:pointer;font-weight:500;font-size:18px;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:14px;height:14px;background:linear-gradient(var(--ink),var(--ink)) center/14px 2px no-repeat,linear-gradient(var(--ink),var(--ink)) center/2px 14px no-repeat;transition:transform .35s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px;color:var(--ink-2);max-width:56ch;font-size:16px}
+
+/* финал */
+.end{margin-top:calc(var(--g)*8);background:var(--ink);color:var(--paper);padding:calc(var(--g)*5) 0 calc(var(--g)*2)}
+.end .cells .cg{stroke:#2a2c31}
+.end .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:calc(var(--g)*2) clamp(32px,5vw,80px);margin-top:calc(var(--g)*3);align-items:end}
+.end .lede span{color:#a3a6ad}
+.end .btn{background:var(--blue);color:var(--on-blue)}
+.end .btn:hover{background:var(--paper);color:var(--ink)}
+.end .ln{border-color:#4a4d55}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:calc(var(--g)*5);padding-top:calc(var(--g)*1);border-top:1px solid #2a2c31;font-size:14px;color:#8d9098}
+
+/* ---------- Адаптив ---------- */
+@media (max-width:900px){
+  .hero-row,.sec-h,.work,.pr,.deal,.about,.about.solo,.end .row{grid-template-columns:1fr}
+  .hl{display:contents}
+  .hero-row .plane{order:2}
+  .inside{order:3;padding-top:0}
+  .faq.wide{grid-template-columns:1fr}
+  .faq.wide details:nth-child(2){border-top:0}
+  .steps{grid-template-columns:1fr 1fr;gap:calc(var(--g)*2) calc(var(--g)*2)}
+  .bar nav a:not(.keep){display:none}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .shots{grid-template-columns:repeat(3,74%);overflow-x:auto;scroll-snap-type:x mandatory;margin-right:calc(var(--gut)*-1);padding-right:var(--gut);scrollbar-width:none}
+  .shots::-webkit-scrollbar{display:none}
+  .shots img{scroll-snap-align:start}
+  .shots.web{grid-template-columns:100%;overflow:visible;margin-right:0;padding-right:0}
+  .shots.web img:last-child{display:none}
+  .steps{grid-template-columns:1fr}
+  .steps li{display:grid;grid-template-columns:auto 1fr;column-gap:16px;padding-top:calc(var(--g)*2)}
+  .steps .n{grid-row:1 / span 2;height:calc(var(--g)*2.8);margin:0}
+  .plane{padding:calc(var(--g)*2) 16px}
+  .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .cells.wait .k{opacity:1}}
+</style>
+</head>
+<body>
+
+<header class="wrap bar">
+  <b>Александр Сахно</b>
+  <nav aria-label="Разделы">
+    <a href="#work">Работы</a>
+    <a href="#price">Цены</a>
+    <a href="#how">Как работаем</a>
+    <button class="tg" type="button" aria-pressed="true" id="gridBtn"><i aria-hidden="true"></i>Сетка</button>
+    <a class="keep" href="https://t.me/onkhas" target="_blank" rel="noopener">Telegram</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero" aria-labelledby="h1">
+    <h1 id="h1"><span class="sr">Сайты и приложения</span>
+      <svg class="cells wait" data-text="САЙТЫ И" data-fit="ПРИЛОЖЕНИЯ" aria-hidden="true"></svg>
+      <svg class="cells wait" data-text="ПРИЛОЖЕНИЯ" data-fit="ПРИЛОЖЕНИЯ" aria-hidden="true"></svg>
+    </h1>
+    <div class="hero-row">
+      <div class="hl">
+        <p class="lede">Под любую задачу и концепцию: от бота для брони до большого сайта с характером. <span>Чаще всего делаю для ресторанов, баров и кафе, от маленькой кофейни до заведения с большой историей. Но не только для них.</span></p>
+        <div class="acts">
+          <a class="btn" href="https://t.me/onkhas" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.4 2.2L18 7.5l-6.6 7.3 7.1 5.2L21 4Z"/><path d="M9.4 13.4v5.4l2.9-3"/></svg>Написать в Telegram</a>
+          <a class="ln" href="#price">Смотреть цены</a>
+        </div>
+        <ul class="inside" aria-label="Что делаю">
+          <li><b>Сайты</b><span>от визитки до сайта-журнала</span></li>
+          <li><b>Telegram-боты</b><span>бронь, заказы, запись, рассылки</span></li>
+          <li><b>Мини-приложения</b><span>меню, лояльность, игры для гостей</span></li>
+          <li><b>Поддержка</b><span>обновляю всё, пока вы работаете</span></li>
+        </ul>
+      </div>
+      <div class="plane">
+        <div class="device"><button class="tap" type="button"><span>Попробовать демо</span></button><iframe src="demo/" title="Живое демо мини-приложения для бара «Ситец»" loading="eager"></iframe></div>
+        <p><span>Это рабочее демо, жмите куда угодно</span><a href="demo/" target="_blank" rel="noopener">На весь экран</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="work" aria-labelledby="h-work">
+    <div class="sec-h"><h2 id="h-work"><span class="sr">Работы</span><svg class="cells sec-t wait" data-text="РАБОТЫ" data-on="view" aria-hidden="true"></svg></h2><p>Пара примеров, оба работают. Каждый проект делаю под заведение с нуля, шаблонов не будет.</p></div>
+    <article class="work">
+      <div>
+        <h3>Мини-приложение для бара</h3>
+        <p class="meta">Telegram · демо</p>
+        <p class="d">Приложение бара прямо в Telegram: меню с фотографиями, бронь стола и небольшая игра для постоянных гостей. Открывается по QR на столе, скачивать ничего не нужно.</p>
+        <a class="ln" href="demo/" target="_blank" rel="noopener">Открыть демо</a>
+      </div>
+      <div class="shots">
+        <img src="img/app-menu.webp" width="780" height="1688" alt="Меню в мини-приложении: закуски с фото, граммовкой и ценами" loading="lazy">
+        <img src="img/app-book.webp" width="780" height="1688" alt="Книга образцов: у гостя звание «ткач», собрано 12 настоек из 19" loading="lazy">
+        <img src="img/app-booking.webp" width="780" height="1688" alt="Форма брони: имя, телефон, день, время и число гостей" loading="lazy">
+      </div>
+    </article>
+    <article class="work">
+      <div>
+        <h3>Сайт выездного бара Negroni</h3>
+        <p class="meta">Сайт</p>
+        <p class="d">Сайт для выездного бара. Хотелось, чтобы он ощущался как журнал, который приятно листать, а не как прайс. Внутри калькулятор вечера, а заявка сразу приходит в Telegram.</p>
+        <a class="ln" href="https://onkhas1.github.io/negroni-bar/" target="_blank" rel="noopener">Открыть сайт</a>
+      </div>
+      <div class="shots web">
+        <img src="img/negroni-d.webp" width="1600" height="1000" alt="Обложка сайта Negroni на компьютере" loading="lazy">
+        <img src="img/negroni-m.webp" width="780" height="1688" alt="Сайт Negroni на телефоне" loading="lazy">
+      </div>
+    </article>
+  </section>
+
+  <section class="wrap sec" id="price" aria-labelledby="h-price">
+    <div class="sec-h"><h2 id="h-price"><span class="sr">Цены</span><svg class="cells sec-t wait" data-text="ЦЕНЫ" data-on="view" aria-hidden="true"></svg></h2><p>Это стартовые цены. Итог зависит от объёма и ваших идей, обсудим за 15 минут.</p></div>
+    <ul class="prices">
+      <li class="pr">
+        <div class="num"><svg class="cells wait" data-text="10 000" data-fit="60 000" data-on="view" aria-hidden="true"></svg><div class="cur"><b>от 10 000 ₽</b><span>за проект</span></div></div>
+        <div class="txt"><h3>Сайт или меню по QR</h3><p>Простой сайт, лендинг под событие или меню на одной странице с фото, ценами и QR на столы.</p><p class="when">Срок около недели</p></div>
+      </li>
+      <li class="pr">
+        <div class="num"><svg class="cells wait" data-text="30 000" data-fit="60 000" data-on="view" aria-hidden="true"></svg><div class="cur"><b>от 30 000 ₽</b><span>за проект</span></div></div>
+        <div class="txt"><h3>Telegram-бот или мини-приложение</h3><p>Бронь, заказы, запись, рассылки, меню. Всё, что вашим гостям или клиентам удобнее делать прямо в Telegram.</p><p class="when">Срок 1–2 недели</p></div>
+      </li>
+      <li class="pr">
+        <div class="num"><svg class="cells wait" data-text="60 000" data-fit="60 000" data-on="view" aria-hidden="true"></svg><div class="cur"><b>от 60 000 ₽</b><span>за проект</span></div></div>
+        <div class="txt"><h3>Большой проект под ключ</h3><p>Сайт и приложение вместе, своя механика лояльности или игра под вашу концепцию, картинки для сторис и короткое видео для соцсетей.</p><p class="when">Срок 2–3 недели</p></div>
+      </li>
+      <li class="pr">
+        <div class="num"><svg class="cells wait" data-text="3 000" data-fit="60 000" data-on="view" aria-hidden="true"></svg><div class="cur"><b>3 000 ₽</b><span>в месяц</span></div></div>
+        <div class="txt"><h3>Поддержка</h3><p>Поменялись цены, появилась новая позиция, в субботу диджей? Пишете мне, я обновляю.</p></div>
+      </li>
+    </ul>
+    <div class="deal"><b>Первые три заведения получают скидку 30%</b><p>Взамен прошу честный отзыв и разрешение показать ваш проект на этой странице.</p></div>
+  </section>
+
+  <section class="wrap sec" id="how" aria-labelledby="h-how">
+    <div class="sec-h"><h2 id="h-how"><span class="sr">Как работаем</span><svg class="cells sec-t wait" data-text="КАК РАБОТАЕМ" data-on="view" aria-hidden="true"></svg></h2><p>Без долгих брифов и презентаций.</p></div>
+    <ol class="steps">
+      <li><svg class="cells n wait" data-text="1" data-on="view" aria-hidden="true"></svg><b>Пишете мне</b><p>Пары строк хватит: что за проект и чего хочется.</p></li>
+      <li><svg class="cells n wait" data-text="2" data-on="view" aria-hidden="true"></svg><b>Созваниваемся</b><p>Минут пятнадцать. Разбираемся, что вам правда нужно и сколько это стоит.</p></li>
+      <li><svg class="cells n wait" data-text="3" data-on="view" aria-hidden="true"></svg><b>Собираю демо</b><p>Сразу на ваших данных и в ваших цветах. Дальше правим по вашим комментариям.</p></li>
+      <li><svg class="cells n wait" data-text="4" data-on="view" aria-hidden="true"></svg><b>Запускаем</b><p>Ссылка, QR на столы, и я показываю администратору, как со всем этим обращаться.</p></li>
+    </ol>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="h-about">
+    <div class="sec-h"><h2 id="h-about"><span class="sr">Обо мне</span><svg class="cells sec-t wait" data-text="ОБО МНЕ" data-on="view" aria-hidden="true"></svg></h2><p>И почему чаще всего бары.</p></div>
+    <div class="about solo">
+      <blockquote>
+        <p>Я пять лет работал барменом. Знаю, как в пятницу никто не слышит телефон, а гость пять минут ищет в меню цену своего негрони. Поэтому с ресторанами и барами мне проще всего: я понимаю, что там на самом деле пригодится, а что красиво смотрится только в презентации. Но интересная задача из другой сферы меня тоже радует.</p>
+        <footer>Александр Сахно</footer>
+      </blockquote>
+      <ul class="me">
+        <li><b>Пять лет за стойкой</b><span>всё, о чём пишу на этой странице, видел сам</span></li>
+        <li><b>Один человек на связи</b><span>без менеджеров и испорченного телефона</span></li>
+        <li><b>Из любого города</b><span>встречаться не обязательно, всё решаем в Telegram</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="faq" aria-labelledby="h-faq">
+    <div class="sec-h"><h2 id="h-faq"><span class="sr">Вопросы</span><svg class="cells sec-t wait" data-text="ВОПРОСЫ" data-on="view" aria-hidden="true"></svg></h2><p>То, что спрашивают чаще всего.</p></div>
+    <div class="faq wide">
+        <details><summary>Гостям нужно что-то скачивать?</summary><p>Нет. Приложение открывается прямо в Telegram, а сайт в обычном браузере.</p></details>
+        <details><summary>Сколько стоит содержать?</summary><p>Почти ничего. Для бара хватает бесплатного хостинга, так что платить придётся разве что за поддержку, и то если захотите.</p></details>
+        <details><summary>Что нужно от вас?</summary><p>Меню с ценами, фотографии блюд и зала, адрес и часы работы. Нет фото? Подскажу, как снять на телефон, чтобы смотрелось прилично.</p></details>
+        <details><summary>Можно в нашем фирменном стиле?</summary><p>Конечно. Примеры здесь только чтобы показать уровень, ваш проект будет в ваших цветах и с вашим характером.</p></details>
+        <details><summary>Вы делаете только для общепита?</summary><p>Нет. Рестораны и бары мне ближе всего, но сайты и ботов я делаю для любого дела. Напишите, что у вас, и обсудим.</p></details>
+        <details><summary>Мы в другом городе. Это важно?</summary><p>Нет. Я работаю удалённо: созваниваемся в Telegram, демо показываю по ссылке, запуск тоже онлайн.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer class="end">
+  <div class="wrap">
+    <p class="sr">Напишите мне</p>
+    <svg class="cells wait" data-text="НАПИШИТЕ" data-fit="ПРИЛОЖЕНИЯ" data-on="view" aria-hidden="true"></svg>
+    <div class="row">
+      <p class="lede">Расскажите, что у вас за проект, <span>а я честно скажу, что из этого получится и во сколько обойдётся.</span></p>
+      <div class="acts">
+        <a class="btn" href="https://t.me/onkhas" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.4 2.2L18 7.5l-6.6 7.3 7.1 5.2L21 4Z"/><path d="M9.4 13.4v5.4l2.9-3"/></svg>Написать в Telegram</a>
+        <a class="ln" href="https://t.me/onkhas" target="_blank" rel="noopener">@onkhas</a>
+      </div>
+    </div>
+    <div class="foot"><span>© 2026 Александр Сахно</span><span>Фото блюд в демо: Unsplash</span></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // Клеточная азбука: 5×7, X — закрашенная клетка.
+  const G = {
+    'П':'XXXXX X...X X...X X...X X...X X...X X...X','Р':'XXXX. X...X X...X XXXX. X.... X.... X....',
+    'И':'X...X X...X X..XX X.X.X XX..X X...X X...X','Л':'..XXX .X..X .X..X .X..X .X..X .X..X X...X',
+    'О':'.XXX. X...X X...X X...X X...X X...X .XXX.','Ж':'X.X.X X.X.X .XXX. ..X.. .XXX. X.X.X X.X.X',
+    'Е':'XXXXX X.... X.... XXXX. X.... X.... XXXXX','Н':'X...X X...X X...X XXXXX X...X X...X X...X',
+    'Я':'.XXXX X...X X...X .XXXX ..X.X .X..X X...X','Д':'.XXX. .X.X. .X.X. .X.X. .X.X. XXXXX X...X',
+    'Б':'XXXXX X.... X.... XXXX. X...X X...X XXXX.','А':'.XXX. X...X X...X XXXXX X...X X...X X...X',
+    'В':'XXXX. X...X X...X XXXX. X...X X...X XXXX.','Ш':'X.X.X X.X.X X.X.X X.X.X X.X.X X.X.X XXXXX',
+    'Й':'.XXX. ..... X...X X..XX X.X.X XX..X X...X','Т':'XXXXX ..X.. ..X.. ..X.. ..X.. ..X.. ..X..','Ы':'X...X X...X X...X XXX.X X.X.X X.X.X XXX.X',
+    'Ц':'X..X. X..X. X..X. X..X. X..X. XXXXX ....X','К':'X...X X..X. X.X.. XX... X.X.. X..X. X...X',
+    'М':'X...X XX.XX X.X.X X...X X...X X...X X...X','С':'.XXXX X.... X.... X.... X.... X.... .XXXX',
+    '0':'.XXX. X...X X...X X...X X...X X...X .XXX.','1':'..X.. .XX.. ..X.. ..X.. ..X.. ..X.. .XXX.',
+    '3':'XXXX. ....X ....X .XXX. ....X ....X XXXX.','2':'XXXX. ....X ....X .XXX. X.... X.... XXXXX','4':'X...X X...X X...X XXXXX ....X ....X ....X','6':'.XXX. X.... X.... XXXX. X...X X...X .XXX.'
+  };
+  const W = ch => ch === ' ' ? 3 : 5;
+  const cols = t => [...t].reduce((a, c, i) => a + W(c) + (i ? 1 : 0), 0);
+  function build(svg) {
+    const text = svg.dataset.text, fit = cols(svg.dataset.fit || text);
+    const on = new Set(); let x0 = 0;
+    [...text].forEach((c, i) => {
+      if (i) x0++;
+      (G[c] || '').split(' ').forEach((r, y) => [...r].forEach((v, x) => { if (v === 'X') on.add((x0 + x) + ',' + y); }));
+      x0 += W(c);
+    });
+    const has = (x, y) => on.has(x + ',' + y), R = .42;
+    let paths = '', grid = '';
+    for (let x = 0; x <= fit; x++) grid += `M${x} 0V7`;
+    for (let y = 0; y <= 7; y++) grid += `M0 ${y}H${fit}`;
+    [...on].map(k => k.split(',').map(Number)).forEach(([x, y]) => {
+      // скругляем только открытые углы — как у штрихов Кроувела
+      const t = !has(x, y - 1), b = !has(x, y + 1), l = !has(x - 1, y), r = !has(x + 1, y);
+      const tl = t && l ? R : 0, tr = t && r ? R : 0, br = b && r ? R : 0, bl = b && l ? R : 0;
+      // соседние клетки чуть заходят друг на друга, чтобы штрих был сплошным, без швов сглаживания
+      const E = .04, X0 = x - (l ? 0 : E), X1 = x + 1 + (r ? 0 : E), Y0 = y - (t ? 0 : E), Y1 = y + 1 + (b ? 0 : E);
+      const d = `M${X0 + tl} ${Y0}H${X1 - tr}A${tr} ${tr} 0 0 1 ${X1} ${Y0 + tr}V${Y1 - br}A${br} ${br} 0 0 1 ${X1 - br} ${Y1}H${X0 + bl}A${bl} ${bl} 0 0 1 ${X0} ${Y1 - bl}V${Y0 + tl}A${tl} ${tl} 0 0 1 ${X0 + tl} ${Y0}Z`;
+      paths += `<path class="k" style="--i:${x * 14 + y * 9 + (x * 7 % 5) * 6}" d="${d}"/>`;
+    });
+    // диагонали: ромб на общем углу, чтобы штрих шёл непрерывно (И, Я, Ж)
+    [...on].map(k => k.split(',').map(Number)).forEach(([x, y]) => {
+      [[1, 1], [-1, 1]].forEach(([dx, dy]) => {
+        if (!has(x + dx, y + dy) || has(x + dx, y) || has(x, y + dy)) return;
+        const cx = x + (dx > 0 ? 1 : 0), cy = y + 1, h = .5;
+        paths += `<path class="k" style="--i:${x * 14 + y * 9 + 20}" d="M${cx} ${cy - h}L${cx + h} ${cy}L${cx} ${cy + h}L${cx - h} ${cy}Z"/>`;
+      });
+    });
+    svg.setAttribute('viewBox', `0 0 ${fit} 7`);
+    svg.innerHTML = `<path class="cg" d="${grid}"/>${paths}`;
+  }
+  const svgs = [...document.querySelectorAll('svg.cells')];
+  svgs.forEach(build);
+
+  // Шаг фоновой сетки = клетка заголовка: буквы и лист живут на одной сетке.
+  const hero = document.querySelector('.hero svg.cells'), root = document.documentElement;
+  function sync() {
+    const r = hero.getBoundingClientRect(), cell = r.width / cols(hero.dataset.fit), bg = cell < 12 ? cell * 2 : cell;
+    root.style.setProperty('--bg', bg + 'px');
+    root.style.setProperty('--bgx', (r.left % bg) + 'px');
+  }
+  sync(); addEventListener('resize', sync);
+  if (document.fonts) document.fonts.ready.then(sync);
+
+  const go = s => { s.classList.remove('wait'); s.classList.add('go'); };
+  const later = svgs.filter(s => s.dataset.on === 'view');
+  svgs.filter(s => s.dataset.on !== 'view').forEach((s, i) => setTimeout(() => go(s), 120 + i * 260));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { go(e.target); io.unobserve(e.target); } }), { threshold: .5 });
+    later.forEach(s => io.observe(s));
+  } else later.forEach(go);
+
+  const btn = document.getElementById('gridBtn');
+  try { if (localStorage.getItem('grid') === 'off') { root.classList.remove('grid-on'); btn.setAttribute('aria-pressed', 'false'); } } catch {}
+  btn.addEventListener('click', () => {
+    const on = root.classList.toggle('grid-on'); btn.setAttribute('aria-pressed', on);
+    try { localStorage.setItem('grid', on ? 'on' : 'off'); } catch {}
+  });
+
+  const dev = document.querySelector('.device');
+  dev.querySelector('.tap').addEventListener('click', () => { dev.classList.add('on'); dev.querySelector('iframe').focus(); });
+})();
+</script>
+</body>
+</html>

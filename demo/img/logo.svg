@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240" fill="none" stroke="#f6eee4" stroke-linecap="round">
+  <ellipse cx="100" cy="120" rx="92" ry="112" stroke-width="5"/>
+  <ellipse cx="100" cy="120" rx="80" ry="100" stroke-width="2" opacity=".55"/>
+  <!-- катушка ниток -->
+  <rect x="58" y="62" width="84" height="14" rx="4" fill="#f6eee4" stroke="none"/>
+  <rect x="58" y="164" width="84" height="14" rx="4" fill="#f6eee4" stroke="none"/>
+  <g stroke-width="5">
+    <path d="M68 86h64M68 98h64M68 110h64M68 122h64M68 134h64M68 146h64M68 158h64"/>
+  </g>
+  <!-- игла с ниткой -->
+  <path d="M150 52 112 196" stroke-width="4"/>
+  <ellipse cx="148" cy="60" rx="3" ry="6" transform="rotate(15 148 60)" stroke-width="2.5"/>
+  <path d="M132 158c22 8 30 26 12 40" stroke-width="2.5" opacity=".8"/>
+</svg>
