@@ -1,4 +1,4 @@
-// Демо-бар «Ситец» — мини-приложение для Telegram: меню, книга образцов, бронь, о баре.
+// Мини-приложение «Мануфактура» для Telegram: меню, бинго настоек, бронь, о баре.
 // Работает и в обычном браузере (тогда без Telegram-функций, прогресс в localStorage).
 (() => {
   const B = window.BAR, M = window.MENU, T = M.tinctures;
@@ -11,7 +11,7 @@
 
   if (inTg) {
     tg.ready(); tg.expand();
-    try { tg.setHeaderColor('#2b3a64'); tg.setBackgroundColor('#f5efe6'); tg.setBottomBarColor && tg.setBottomBarColor('#fbf8f3'); } catch {}
+    try { tg.setHeaderColor('#8e2f34'); tg.setBackgroundColor('#f5efe6'); tg.setBottomBarColor && tg.setBottomBarColor('#fbf8f3'); } catch {}
   }
 
   /* ---------- Время ---------- */
@@ -111,11 +111,11 @@
   const toast = msg => { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2600); };
 
   /* ---------- Книга образцов ---------- */
-  // Легенда демо: бар в старой ситценабивной мастерской. Каждая настойка — образец ткани.
-  const COLORS = { 'Бузина-цитрус':'#e8d37a','Гранат-персик':'#d4515a','Алоэ-киви':'#9cc06a','Яблоко-щавель':'#b9cd73','Фейхоа-лайм':'#86ad61','Вишня':'#7c1a2a','Хреновуха':'#e6dcb8','Томатная':'#d4472f','Лимончелло':'#f0cc45','Облепиха':'#ee8a24','Клюковка':'#b51f3a','Персик-личи':'#f1b083','Клубника-базилик':'#c64a58','Банан-куркума':'#efc244','Малина-пломбир':'#eda0b2','Кассис':'#4b1a3a','Маракуйя-ваниль':'#f2b45a','Джин на малине':'#d4567a','Черноплодка-дуб':'#3b1422' };
+  // Дом 36 в 1873 году — лавка «Мануфактурные товары» купца А. Г. Морозова. Каждая настойка — образец ткани.
+  const COLORS = { 'Бузина-цитрус':'#e8d37a','Гранат-персик':'#d4515a','Алоэ-киви':'#9cc06a','Яблоко-щавель':'#b9cd73','Фейхоа-лайм':'#86ad61','Вишня':'#7c1a2a','Хреновуха':'#e6dcb8','Томатная':'#d4472f','Лимончелло':'#f0cc45','Облепиха':'#ee8a24','Клюковка':'#b51f3a','Персик-личи-конопля':'#f1b083','Клубника-гречка':'#c64a58','Банан-куркума':'#efc244','Малина-пломбир':'#eda0b2','Кассис':'#4b1a3a','Порно шот':'#f2b45a','Джин на малине':'#d4567a','Черноплодный негрони':'#3b1422' };
   const tinct = []; T.groups.forEach(g => g.items.forEach(([n, d]) => tinct.push({ n, d, g: g.title })));
   const cats = T.groups.map(g => ({ title: g.title, items: tinct.filter(t => t.g === g.title) }));
-  const RANKS = [ { at: 0, t: 'Гость' }, { at: 5, t: 'Подмастерье' }, { at: 12, t: 'Ткач' }, { at: 19, t: 'Мастер ситца' } ];
+  const RANKS = [ { at: 0, t: 'Покупатель' }, { at: 5, t: 'Купец 3-й гильдии' }, { at: 12, t: 'Купец 2-й гильдии' }, { at: 19, t: 'Купец 1-й гильдии' } ];
   const WEAVES = ['ситец в полоску', 'клетка', 'горох', 'ёлочка', 'саржа', 'рогожка'];
 
   // Цвет нитей узора: темнее на светлой ткани, светлее на тёмной.
@@ -147,7 +147,7 @@
 
   // Код дня для бармена. В прототипе вычисляется из даты; в рабочей версии бармен получит его в боте.
   const dayCode = d => String(((d.getDate() * 7919 + (d.getMonth() + 1) * 104729 + d.getFullYear()) % 9000) + 1000);
-  const KEY = 'sitets-demo-book';
+  const KEY = 'manufaktura-book';
   const monthKey = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}`;
   const MONTHS_IN = ['январе','феврале','марте','апреле','мае','июне','июле','августе','сентябре','октябре','ноябре','декабре'];
   let book = { items: {}, months: {} };
@@ -171,7 +171,7 @@
   function renderBook() {
     const u = uniq(), r = rankOf(u), next = RANKS.find(x => x.at > u), mon = book.months[monthKey(now)] || 0;
     $('#rank').innerHTML = `<p class="lbl">Ваше звание</p><p class="title">${r.t}</p>
-      <p class="next">${next ? `До звания «${next.t.toLowerCase()}» — ${next.at - u} ${next.at - u === 1 ? 'образец' : next.at - u < 5 ? 'образца' : 'образцов'}` : 'Вся книга собрана. Вы — мастер ситца.'}</p>
+      <p class="next">${next ? `До звания «${next.t.toLowerCase()}» — ${next.at - u} ${next.at - u === 1 ? 'образец' : next.at - u < 5 ? 'образца' : 'образцов'}` : 'Вся книга собрана. Как сам А. Г. Морозов.'}</p>
       <div class="ladder">${RANKS.slice(1).map(x => `<i class="${u >= x.at ? 'on' : ''}"></i>`).join('')}</div>
       <div class="stats"><div><b>${u}/${tinct.length}</b><span>образцов</span></div><button type="button" class="st-btn" id="hist"><b>${total()}</b><span>рюмок всего ›</span></button><div><b>${mon}</b><span>в ${MONTHS_IN[now.getMonth()]}</span></div></div>
       <button class="share" type="button" id="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M5 13v5.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V13"/></svg>Похвастаться</button>`;
@@ -203,7 +203,7 @@
   const W = 1080, H = 1920;
   let storyPhoto = null;
   const storyOpts = { rank: true, swatches: true, month: true, year: false };
-  const logoImg = new Image(); logoImg.src = 'img/logo.svg';
+  const logoImg = new Image(); logoImg.src = 'img/logo-round.png';
   // Узор ткани на холсте (те же 6 переплетений, что и в книге).
   function drawSwatch(ctx, x, y, w, h, name) {
     const i = tinct.findIndex(t => t.n === name), c = COLORS[name], dark = lum(c) < .45;
@@ -228,7 +228,7 @@
     ctx.fillStyle = ctx.createPattern(tile, 'repeat'); ctx.translate(x, y); ctx.fill(); ctx.restore();
   }
   const fit = (ctx, text, max, size, weight = 800) => { let f = size; do { ctx.font = `${weight} ${f}px "Roboto Condensed", "Arial Narrow", sans-serif`; f -= 4; } while (ctx.measureText(text).width > max && f > 30); };
-  // Ткацкая грамота для сторис. Весь контент — в безопасной зоне 270…1650 px,
+  // Купеческое свидетельство для сторис. Весь контент — в безопасной зоне 270…1650 px,
   // чтобы его не перекрывали подписи и кнопки сторис Instagram/Telegram.
   const SAFE_TOP = 270, SAFE_BOTTOM = H - 270;
   async function drawStory(cv) {
@@ -236,7 +236,7 @@
     try { await Promise.all([document.fonts.load(`italic 400 100px ${OS}`), document.fonts.load(`400 40px ${OS}`), document.fonts.load(`700 40px ${OS}`), document.fonts.load(`800 40px ${RC}`), document.fonts.load('400 40px "Golos Text"')]); } catch {}
     if (!logoImg.complete) await new Promise(r => { logoImg.onload = logoImg.onerror = r; });
     cv.width = W; cv.height = H; const ctx = cv.getContext('2d'), cream = '#f6eee4', cream2 = '#e3cfc6', line = 'rgba(246,238,228,.35)';
-    ctx.fillStyle = '#2b3a64'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#8e2f34'; ctx.fillRect(0, 0, W, H);
     ctx.strokeStyle = line; ctx.lineWidth = 3; ctx.strokeRect(48, 48, W - 96, H - 96); ctx.lineWidth = 1.5; ctx.strokeRect(62, 62, W - 124, H - 124);
     ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
     const u = uniq(), r = rankOf(u), user = inTg && tg.initDataUnsafe && tg.initDataUnsafe.user, hasName = !!(user && user.first_name);
@@ -248,7 +248,7 @@
 
     // Размеры блоков. В режиме «две колонки» слева сетка 4×5, справа кружки столбиком.
     const lw0 = storyPhoto ? 104 : 150, lh = logoImg.naturalWidth ? lw0 * logoImg.naturalHeight / logoImg.naturalWidth : 160;
-    const titleH = 92;                           // «Ткацкая грамота» + линия + воздух
+    const titleH = 92;                           // «Купеческое свидетельство» + линия + воздух
     const cols = split ? 4 : 5, rows = Math.ceil(tinct.length / cols);
     let pr = storyPhoto ? 240 : 0, gs = split ? .9 : 1, cs = split ? 1 : 1;
     const gridW = k => (cols * 130 + (cols - 1) * 18) * k, gridHh = k => (rows * 98 + (rows - 1) * 18) * k;
@@ -265,7 +265,7 @@
     if (logoImg.naturalWidth) ctx.drawImage(logoImg, (W - lw0) / 2, y, lw0, lh); y += lh + 36;
     // заголовок документа — Old Standard TT капителью, линия с ромбиком
     ctx.fillStyle = cream2; ctx.font = `400 38px ${OS}`; ctx.letterSpacing = '8px';
-    ctx.fillText('ТКАЦКАЯ ГРАМОТА', W / 2, y + 34); ctx.letterSpacing = '0px';
+    ctx.fillText('КУПЕЧЕСКОЕ СВИДЕТЕЛЬСТВО', W / 2, y + 34); ctx.letterSpacing = '0px';
     const ly = y + 62; ctx.strokeStyle = line; ctx.lineWidth = 2;
     ctx.beginPath(); ctx.moveTo(W / 2 - 230, ly); ctx.lineTo(W / 2 - 14, ly); ctx.moveTo(W / 2 + 14, ly); ctx.lineTo(W / 2 + 230, ly); ctx.stroke();
     ctx.save(); ctx.translate(W / 2, ly); ctx.rotate(Math.PI / 4); ctx.fillStyle = cream2; ctx.fillRect(-5, -5, 10, 10); ctx.restore();
@@ -323,12 +323,12 @@
       }
     }
     // подпись бара — внутри безопасной зоны
-    ctx.fillStyle = cream; ctx.font = `800 40px ${RC}`; ctx.letterSpacing = '10px'; ctx.fillText(B.name.toUpperCase(), W / 2, SAFE_BOTTOM - 76); ctx.letterSpacing = '0px';
+    ctx.fillStyle = cream; ctx.font = `800 40px ${RC}`; ctx.letterSpacing = '10px'; ctx.fillText('МАНУФАКТУРА', W / 2, SAFE_BOTTOM - 76); ctx.letterSpacing = '0px';
     ctx.fillStyle = cream2; ctx.font = `italic 400 32px ${OS}`; ctx.fillText(`бар-кухня · ${B.address}`, W / 2, SAFE_BOTTOM - 32);
   }
   function openStory() {
     const opt = (k, label) => `<label class="tgl"><input type="checkbox" data-k="${k}" ${storyOpts[k] ? 'checked' : ''}><span>${label}</span></label>`;
-    openSheet(`<h3 id="shTitle">Ткацкая грамота</h3>
+    openSheet(`<h3 id="shTitle">Купеческое свидетельство</h3>
       <div class="story"><canvas id="cv" aria-label="Превью сторис"></canvas>
         <div class="story-side">
           <label class="btn ghost photo-btn">${storyPhoto ? 'Сменить фото' : 'Загрузить фото из бара'}<input type="file" accept="image/*" id="photoIn" hidden></label>
@@ -345,7 +345,7 @@
         const url = cv.toDataURL('image/png'); haptic('success');
         // На телефоне: системное «Поделиться» с файлом, если есть; иначе картинка на весь экран — долгое нажатие → сохранить.
         try {
-          const blob = await (await fetch(url)).blob(), file = new File([blob], 'sitets-story.png', { type: 'image/png' });
+          const blob = await (await fetch(url)).blob(), file = new File([blob], 'manufaktura-story.png', { type: 'image/png' });
           if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file] }); return; }
         } catch (err) { if (err && err.name === 'AbortError') return; }
         const v = $('#viewer'); v.querySelector('img').src = url; v.querySelector('a').href = url; v.hidden = false;
@@ -354,7 +354,7 @@
   }
   $('#viewer').onclick = e => { if (e.target.closest('a')) return; $('#viewer').hidden = true; };
   $('#wedRule').textContent = isWed ? `Сегодня среда: все настойки по ${T.wednesday} ₽.` : `По средам все настойки по ${T.wednesday} ₽ вместо ${T.price}.`;
-  $('#demoCode').textContent = `Демо: код дня для бармена ${dayCode(now)}. В рабочей версии бармен получает его в боте.`;
+  $('#demoCode').hidden = true;
   $('#pages').onclick = e => {
     const b = e.target.closest('.sw'); if (!b) return; const c = tinct.find(t => t.n === b.dataset.n), it = book.items[c.n];
     haptic('tap');
@@ -463,7 +463,7 @@
     const dayTxt = isToday() ? 'сегодня' : iso(d) === iso(days[1]) ? 'завтра' : `${d.getDate()} ${MONTHS[d.getMonth()]}, ${DAYS_SHORT[d.getDay()].toLowerCase()}`;
     $('#okCard').innerHTML = [['Когда', `${dayTxt}, ${payload.time}`], ['Гостей', guests], ['Имя', payload.name], ['Телефон', payload.phone]]
       .concat(payload.note ? [['Пожелания', payload.note]] : []).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
-    $('#demoNote').hidden = !!B.webhookUrl;
+    $('#demoNote').hidden = true;
     $('#form').hidden = true; $('#ok').hidden = false; haptic('success');
   };
   $('#okCall').onclick = () => openPhone();
@@ -502,7 +502,7 @@
     tip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 12.5h3.5l3 2.5h3.5a1.5 1.5 0 0 1 0 3H9.5M7.5 12.5V20M4 20h3.5"/><path d="m14.5 16 4.6-2.2a1.5 1.5 0 0 1 1.4 2.6L13.5 20H7.5"/><circle cx="15" cy="6.5" r="3"/></svg>',
     grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16M4 15h16M10 4v16M15 4v16"/></svg>'
   };
-  const linkAct = (url, icon, label, demo) => `<a class="act" ${url ? `href="${esc(url)}" target="_blank" rel="noopener"` : `href="#" data-demo="${esc(demo)}"`}>${icon}${label}</a>`;
+  const linkAct = (url, icon, label) => url ? `<a class="act" href="${esc(url)}" target="_blank" rel="noopener">${icon}${label}</a>` : '';
   const acts = withBingo => `<div class="acts">
       ${withBingo ? `<button class="act" type="button" data-go="bingo">${ICON.grid}Бинго</button>` : linkAct(B.review2gis, ICON.pin, 'Отзыв в 2ГИС', 'Ссылку на отзыв в 2ГИС добавим, когда её даст бар')}
       ${linkAct(B.reviewYandex, ICON.star, withBingo ? 'Отзыв' : 'Яндекс Карты', 'Ссылку на отзыв в Яндекс Картах добавим, когда её даст бар')}
@@ -511,10 +511,10 @@
     const d = e.target.closest('[data-demo]'); if (d) { e.preventDefault(); toast('Демо: ' + d.dataset.demo + '.'); return; }
     const g = e.target.closest('.acts [data-go]'); if (g) show(g.dataset.go);
   });
-  $('#history').innerHTML = `<h3>Старая ткацкая</h3>
-    <p>Когда-то в этом доме набивали ситец: узор наносили на ткань резными деревянными досками. Отсюда наше имя и книга образцов, где у каждой настойки свой рисунок.</p>
-    <p>«Ситец» — вымышленный бар. Это демо: меню, книга образцов, бронь и сторис работают так же, как у настоящего заведения.</p>`;
-  $('#aboutActs').innerHTML = `<div class="guest"><h3>Были у нас?</h3><p>Оставьте отзыв или поблагодарите команду бара.</p>${acts(false)}</div>`;
+  $('#history').innerHTML = `<h3>Дом 1873 года</h3>
+    <p>Здание на бывшей Большой Тобольской улице построено в 1873 году как каменная лавка «Мануфактурные товары» купца первой гильдии Андрея Григорьевича Морозова. Его торговый дом «Морозов с сыновьями» держал восемь лавок, а в 1914 году был первым в уезде по обороту.</p>
+    <p>Мануфактурой тогда называли ткани. Отсюда и наше имя, и книга образцов в этом приложении.</p>`;
+  if (B.review2gis || B.reviewYandex || B.tips) $('#aboutActs').innerHTML = `<div class="guest"><h3>Были у нас?</h3><p>Оставьте отзыв или поблагодарите команду бара.</p>${acts(false)}</div>`;
   $('#info').innerHTML = `
     <button type="button" id="addrBtn"><span class="k">Адрес</span><span class="v">${esc(B.address)}<small>${esc(B.building)}</small></span></button>
     <button type="button" id="phoneBtn"><span class="k">Телефон</span><span class="v">${esc(B.phone)}</span></button>
@@ -526,6 +526,6 @@
     cr.innerHTML = `Приложение сделал ${B.authorLink ? `<a href="${esc(B.authorLink)}" id="authorLink">${esc(B.author)}</a>` : esc(B.author)}`;
     const al = $('#authorLink'); if (al && inTg) al.onclick = e => { e.preventDefault(); /^https:\/\/t\.me\//.test(B.authorLink) ? tg.openTelegramLink(B.authorLink) : tg.openLink(B.authorLink); };
   }
-  const tl = $('#tgLink'); if (!B.telegram) tl.hidden = true; tl.href = B.telegram;
+  const tl = $('#tgLink'); tl.href = B.telegram;
   if (inTg) tl.onclick = e => { e.preventDefault(); tg.openTelegramLink(B.telegram); };
 })();

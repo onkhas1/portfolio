@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#2b3a64">
+<meta name="theme-color" content="#8e2f34">
 <meta name="robots" content="noindex, nofollow">
-<title>Ситец — демо-бар</title>
+<title>Мануфактура</title>
 <script src="https://telegram.org/js/telegram-web-app.js?57"></script>
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="fonts/oldstandard.css">
 <style>
 :root{
-  --bord:#2b3a64;        /* индиго, как набивной ситец */
-  --bord-2:#212e52;
-  --bord-ink:#283862;    /* индиго-текст на креме */
+  --bord:#8e2f34;        /* бордо обложки меню */
+  --bord-2:#73252a;
+  --bord-ink:#7a262c;    /* бордовый текст на креме */
   --cream:#f5efe6;       /* крем страниц меню */
   --paper:#fbf8f3;
   --line:#e5dccf;
@@ -21,7 +21,7 @@
   --ink:#2b2420;
   --ink-2:#6a5f55;
   --on-bord:#f6eee4;
-  --on-bord-2:#cfd3e3;
+  --on-bord-2:#e3cfc6;
   --cond:'Roboto Condensed','Arial Narrow',sans-serif;
   --text:'Golos Text',-apple-system,'Segoe UI',sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
@@ -237,7 +237,6 @@ textarea.inp{min-height:76px;resize:none}
 /* ---------- О баре ---------- */
 .about-top{background:var(--bord);color:var(--on-bord);padding:6px 18px 24px;text-align:center}
 .about-top img{width:100%;max-width:380px;margin:0 auto}
-.about-top .about-ph{aspect-ratio:4/3;object-fit:cover;border-radius:14px;margin-top:12px}
 .about-top p{margin-top:12px;color:var(--on-bord-2);font-size:14.5px}
 .info{margin:8px 18px 0}
 .info a,.info div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
@@ -247,13 +246,14 @@ textarea.inp{min-height:76px;resize:none}
 .info dd span{display:block;font-weight:400;color:var(--ink-2);font-size:14px}
 .info a dd{color:var(--bord-ink)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:340px){.cap{gap:10px;padding-inline:14px}.cap img{width:42px;height:50px}.cap h1{font-size:19px}}
 </style>
 </head>
 <body>
 <div class="app">
   <header class="cap">
-    <img src="img/logo.svg" alt="Ситец, бар-кухня">
-    <div><h1>Ситец</h1><p>Бар-кухня в старой ткацкой</p></div>
+    <img src="img/logo-round.png" alt="Мануфактура, бар-кухня">
+    <div><h1>Мануфактура</h1><p>Бар-кухня в старом доме</p></div>
     <p class="open" id="open"></p>
   </header>
 
@@ -272,16 +272,16 @@ textarea.inp{min-height:76px;resize:none}
   <section class="screen" id="s-bingo" aria-label="Книга образцов">
     <div class="book-head">
       <h2>Книга образцов</h2>
-      <p class="kick">Ситцевая мастерская · демо</p>
+      <p class="kick">Лавка «Мануфактурные товары», 1873</p>
       <div class="rank" id="rank"></div>
     </div>
     <div class="pages" id="pages"></div>
     <div class="rules">
       <h3>Как это работает</h3>
       <ul>
-        <li><b>1</b><span>Когда-то в этом доме набивали ситец. Теперь у каждой нашей настойки свой образец ткани.</span></li>
+        <li><b>1</b><span>Здесь, в доме купца А. Г. Морозова, когда-то продавали мануфактуру — ткани. Теперь у каждой нашей настойки свой образец.</span></li>
         <li><b>2</b><span>Заказали настойку — бармен вводит код дня, и образец вшивается в вашу книгу. Повторная рюмка тоже считается.</span></li>
-        <li><b>3</b><span>Звание растёт с числом разных образцов: 5 — подмастерье, 12 — ткач, все 19 — мастер ситца.</span></li>
+        <li><b>3</b><span>Звание растёт с числом разных образцов: 5 — купец 3-й гильдии, 12 — 2-й, все 19 — 1-й гильдии, как сам Морозов.</span></li>
         <li><b>₽</b><span id="wedRule"></span></li>
       </ul>
       <p class="demo" id="demoCode"></p>
@@ -308,13 +308,13 @@ textarea.inp{min-height:76px;resize:none}
       <dl class="ok-card" id="okCard"></dl>
       <p>Администратор перезвонит, чтобы подтвердить. Если планы поменяются — <button class="link" type="button" id="okCall">позвоните в бар</button>.</p>
       <button class="btn ghost" type="button" id="again">Новая бронь</button>
-      <p class="demo" id="demoNote">Демо: заявка никуда не отправлена.</p>
+      <p class="demo" id="demoNote" hidden></p>
     </div>
   </section>
 
   <!-- О баре -->
   <section class="screen" id="s-about" aria-label="О баре">
-    <div class="about-top"><img class="about-ph" src="img/bar.jpg" alt="Барная стойка вечером"><p id="motto"></p></div>
+    <div class="about-top"><img src="img/facade.png" alt="Рисунок фасада: дом купца Морозова"><p id="motto"></p></div>
     <div class="history" id="history"></div>
     <div id="aboutActs"></div>
     <div class="info" id="info"></div>
@@ -332,7 +332,7 @@ textarea.inp{min-height:76px;resize:none}
 
 <div class="scrim" id="scrim"></div>
 <div class="toast" id="toast" role="status"></div>
-<div class="viewer" id="viewer" hidden><img alt="Сторис" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="><p>Нажмите и удерживайте картинку, чтобы сохранить. Нажмите вне картинки, чтобы закрыть.</p><a download="sitets-story.png">Скачать файл</a></div>
+<div class="viewer" id="viewer" hidden><img alt="Сторис" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="><p>Нажмите и удерживайте картинку, чтобы сохранить. Нажмите вне картинки, чтобы закрыть.</p><a download="manufaktura-story.png">Скачать файл</a></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle"><div class="grab"></div><div id="sheetBody"></div></div>
 
 <script src="config.js"></script>
